@@ -632,9 +632,10 @@ public class ProductDaoImpl implements ProductDao {
 		return list;
 	}
 
-
-
-
-
+	@Override
+	public boolean selectCntMemberByUseridUserpw(Connection connection, long productId, int userNo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

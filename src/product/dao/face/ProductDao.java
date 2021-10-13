@@ -136,6 +136,10 @@ public interface ProductDao {
 
 	public List<Map<String, Object>> selectNutirentInfoWithKind(Connection conn, ProductInfo productList);
 
+	
+	
+	public boolean selectCntMemberByUseridUserpw(Connection connection, long productId, int userNo);
+
 
 	
 

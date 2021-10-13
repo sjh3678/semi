@@ -36,7 +36,7 @@ public class ProductDisplayController extends HttpServlet {
 		
 		//상품 카테고리별 조회
 		List<ProductInfo> productList = productService.getProduct(req, paging);
-//		System.out.println("productList : " + productList);
+		System.out.println("productList : " + productList);
 		
 		
 		List<SymptomCode> symptomList = productService.getSymptomCode();

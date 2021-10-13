@@ -136,4 +136,19 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.selectNutirentInfoWithKind(JDBCTemplate.getConnection(), productList);
 	}
 
+	@Override
+	public boolean addProductInBasket(HttpServletRequest req) {
+
+		String paramProductId = req.getParameter("productId");
+		long productId = Long.parseLong(paramProductId);
+		
+		int userNo = (int ) req.getSession().getAttribute("userNo");
+		
+		if( userNo == 11) {
+			return true; //삽입 성공
+		} else {
+			return false; //삽입 실패
+		}
+	}
+
 }

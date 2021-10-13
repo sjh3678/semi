@@ -1,32 +1,42 @@
+<%@page import="dto.product.NutrientInfo"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
 <script type="text/javascript">
+
 window.onload = function() {
-	//이벤트리스너 등록 - addEventListener
-	//이벤트리스너 해제 - removeEventListener
-	//--------------------------------------------------------
-	<c:forEach items="${nikList }" var="nik">
-	btn${nik.ni.nutId }.addEventListener("click", togleDetail${nik.ni.nutId })
-	</c:forEach>
-	//--------------------------------------------------------
-	
+	$("button[data-btn]").click(function() {
+	  $("#"+$(this).attr("data-btn")).toggle();
+	})
 } //window.onload end
 
-<c:forEach items="${nikList }" var="nik">
-function togleDetail${nik.ni.nutId }() {
-	if (detail${nik.ni.nutId }.style.display == "none"){
-	detail${nik.ni.nutId }.style.display = "block";
-	}else{
-		detail${nik.ni.nutId }.style.display = "none";
-	}
+// window.onload = function() {
+// 	//이벤트리스너 등록 - addEventListener
+// 	//이벤트리스너 해제 - removeEventListener
+// 	//--------------------------------------------------------
+// 	<c:forEach items="${nikList }" var="nik">
+// 	btn${nik.ni.nutId }.addEventListener("click", togleDetail${nik.ni.nutId })
+// 	</c:forEach>
+// 	//--------------------------------------------------------
 	
-}
-</c:forEach>
+// } //window.onload end
+
+// <c:forEach items="${nikList }" var="nik">
+// function togleDetail${nik.ni.nutId }() {
+// 	if (detail${nik.ni.nutId }.style.display == "none"){
+// 	detail${nik.ni.nutId }.style.display = "table-row-group";
+// 	}else{
+// 		detail${nik.ni.nutId }.style.display = "none";
+// 	}
+	
+// }
+// </c:forEach>
 </script>
 
 
@@ -44,9 +54,7 @@ function togleDetail${nik.ni.nutId }() {
 .tg .tg-8jgo{border-color:#ffffff;text-align:center;vertical-align:top}
 .tg .tg-lqy6{text-align:right;vertical-align:top}
 .tg .tg-0lax{text-align:left;vertical-align:top}
-.detail{
-	display: none;
-}
+
 
 table{
 	margin: auto
@@ -61,7 +69,7 @@ table{
 </colgroup>
 <thead>
   <tr>
-    <td class="tg-0lax" rowspan="3"><img src="${productInfo.image }" width="480" height="300"></td>
+    <td class="tg-0lax" rowspan="3"><img src="${productInfo.image }" width="470" height="300"></td>
     <td class="tg-baqh">${productInfo.productName }</td>
     <td class="tg-lqy6">별점 : ${productInfo.starScore }점</td>
   </tr>
@@ -95,15 +103,23 @@ table{
 <thead>
   <tr>
     <th class="tg-baqh">${nik.nk.nutKind }</th>
-    <th class="tg-baqh" colspan="2">${nik.ni.nutContent }/ ${nik.nk.rcmAdult }</th>
+<%--     <th class="tg-baqh" colspan="2">${nik.ni.nutContent }/ ${nik.nk.rcmAdult }</th> --%>
+
+<%--     <% pageContext.setAttribute("nutContentValue", ((NutrientInfo)((Map)pageContext.getAttribute("nik")).get("ni")).getNutContent().replaceAll("[^0-9]", "") ); %> --%>
+<%--     <th class="tg-baqh" colspan="2">${nutContentValue }/ ${nik.nk.rcmAdult }</th> --%>
+
+<%--     <th class="tg-baqh" colspan="2">${nik.ni.nutContent.replaceAll("[^0-9]", "") /${nik.nk.rcmAdult.replaceAll("[^0-9]", "") }</th>--%>
+    <th class="tg-baqh" colspan="2">${nik.ni.nutContent.replaceAll("[^0-9]", "") / nik.nk.rcmAdult.replaceAll("[^0-9]", "") * 100}</th>
+
     <th class="tg-baqh">${nik.ni.nutContent }</th>
     <th class="tg-baqh">${nik.nk.rcmAdult }</th>
-    <th class="tg-8jgo"><button id = "btn${nik.ni.nutId }">상세</button></th>
+<%--     <th class="tg-8jgo"><button id = "btn${nik.ni.nutId }">상세</button></th> --%>
+    <th class="tg-8jgo"><button data-btn = "detail${nik.ni.nutId }">상세</button></th>
   </tr>
 </thead>
 <tbody id = "detail${nik.ni.nutId }" class = "detail">
   <tr>
-    <td class="tg-baqh" colspan="5">${nik.nk.effect }</td>
+    <td class="tg-baqh" colspan="5" style= "width: 860px">${nik.nk.effect }</td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>

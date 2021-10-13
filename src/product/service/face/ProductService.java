@@ -68,8 +68,29 @@ public interface ProductService {
 	
 	
 	
-	
+	/**
+	 * 
+	 * 
+	 * @param productList 
+	 * @return
+	 */
 	List<Map<String, Object>> getNutirentInfoWithKind(ProductInfo productList);
+	
+	
+	/**
+	 * 상품추가
+	 * 
+	 * @param req 세션정보, productId
+	 * @return 성공:1 , 실패0
+	 */
+	boolean addProductInBasket(HttpServletRequest req);
+
+	
+	
+	
+	
+	
+
 	
 
 
